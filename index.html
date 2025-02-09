@@ -3,59 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GM Points Prank App</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Game Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .game-list {
+            margin-top: 30px;
+        }
+        .game-item {
+            font-size: 1.5em;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            transition: background-color 0.3s;
+        }
+        .game-item:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <div id="login-container">
-        <h1>Welcome to GM Points</h1>
-        <input type="text" id="username" placeholder="Enter Username">
-        <button onclick="login()">Login</button>
-    </div>
 
-    <div id="game-container" style="display:none;">
-        <h2>Welcome, <span id="user-name"></span>!</h2>
-        <p>Your GM Points: <span id="points">0</span></p>
-        <button onclick="startMinigames()">Start Earning Points</button>
-        <button onclick="redeemPage()">Redeem</button>
-    </div>
+<h1>Welcome to Game Generator</h1>
 
-    <div id="minigames-container" style="display:none;">
-        <h3>Select Difficulty Level</h3>
-        <button onclick="selectDifficulty('easy')">Easy</button>
-        <button onclick="selectDifficulty('medium')">Medium</button>
-        <button onclick="selectDifficulty('hard')">Hard</button>
-        <button onclick="returnToGame()">Back to Game</button>
-    </div>
+<div class="game-list">
+    <button class="game-item" onclick="window.location.href='free-fire.html'">Free Fire Diamonds</button>
+    <button class="game-item" onclick="window.location.href='pubg-uc.html'">PUBG UC</button>
+    <button class="game-item" onclick="window.location.href='codm-cp.html'">CODM CP</button>
+    <button class="game-item" onclick="window.location.href='google-play.html'">Google Play Gift Cards</button>
+    <button class="game-item" onclick="window.location.href='steam.html'">Steam Gift Cards</button>
+</div>
 
-    <div id="tic-tac-toe" style="display:none;">
-        <h3>Tic-Tac-Toe Game</h3>
-        <button onclick="startTicTacToe()">Start Game</button>
-        <button onclick="returnToMinigames()">Back</button>
-    </div>
-
-    <div id="snake-game" style="display:none;">
-        <h3>Snake Game</h3>
-        <button onclick="startSnakeGame()">Start Game</button>
-        <button onclick="returnToMinigames()">Back</button>
-    </div>
-
-    <div id="checkers-game" style="display:none;">
-        <h3>Checkers Game</h3>
-        <button onclick="startCheckersGame()">Start Game</button>
-        <button onclick="returnToMinigames()">Back</button>
-    </div>
-
-    <div id="redeem-container" style="display:none;">
-        <h3>Redeem Your Rewards (Fake)</h3>
-        <button onclick="redeemFreeFire()">Free Fire Diamonds</button>
-        <button onclick="redeemPUBG()">PUBG UC</button>
-        <button onclick="redeemCODM()">CODM CP</button>
-        <button onclick="redeemGooglePlay()">Google Play Gift Cards</button>
-        <button onclick="backToGame()">Back</button>
-    </div>
-
-    <script src="script.js"></script>
 </body>
-            </html>
-            
+</html>
