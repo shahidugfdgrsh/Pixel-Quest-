@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Quest</title>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script>
+        const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            scene: {
+                preload: preload,
+                create: create,
+                update: update
+            }
+        };
+
+        const game = new Phaser.Game(config);
+
+        let player;
+        let cursors;
+        let wood;
+        let woodText;
+        let healthBar;
+        let hungerBar;
+        let health = 100;
+        let hunger = 100;
+
+        function preload() {
+            this.load.image('player', 'https://www.example.com/player.png'); // Replace with actual image URL for the player
+            this.load.image('wood', 'https://www.example.com/wood.png'); // Replace with image for resources
+            this.load.image('health', 'https://www.example.com/health.png'); // Replace with image for health bar
+        }
+
+        function create() {
+            // Create player
+            player = this.physics.add.sprite(400, 300, 'player');
+            player.setCollideWorldBounds(true);
+            cursors = this.input.keyboard.createCursorKeys();
+
+            // Create resource (wood)
+            wood = this.physics.add.group();
+            wood.create(600, 400, 'wood');
+            woodText = this.add.text(16, 16, 'Wood: 0', { fontSize: '32px', fill: '#fff' });
+
+            // Create health and hunger bars
+            healthBar = this.add.graphics();
+            hungerBar = this.add.graphics();
+
+            // Update health and hunger
+            updateBars();
+
+            // Collision detection between player and resources
+            this.physics.add.overlap(player, wood, collectWood, null, this);
+        }
+
+        function update() {
+            // Player movement
+            if (cursors.left.isDown) {
+                player.setVelocityX(-160);
+            } else if (cursors.right.isDown) {
+                player.setVelocityX(160);
+            } else {
+                player.setVelocityX(0);
+            }
+
+            if (cursors.up.isDown) {
+                player.setVelocityY(-160);
+            } else if (cursors.down.isDown) {
+                player.setVelocityY(160);
+            } else {
+                player.setVelocityY(0);
+            }
+
+            // Decrease hunger and health over time
+            hunger -= 0.05;
+            health -= 0.1;
+
+            if (hunger <= 0 || health <= 0) {
+                // Game over if hunger or health reaches 0
+                this.scene.restart();
+            }
+
+            updateBars();
+        }
+
+        function collectWood(player, woodItem) {
+            // Add wood to the inventory and destroy the resource
+            woodText.setText('Wood: ' + (parseInt(woodText.text.split(': ')[1]) + 1));
+            woodItem.destroy();
+        }
+
+        function updateBars() {
+            // Update health bar
+            healthBar.clear();
+            healthBar.fillStyle(0xff0000, 1);
+            healthBar.fillRect(16, 32, 200 * (health / 100), 20);
+
+            // Update hunger bar
+            hungerBar.clear();
+            hungerBar.fillStyle(0x00ff00, 1);
+            hungerBar.fillRect(16, 64, 200 * (hunger / 100), 20);
+        }
+    </script>
+</body>
+  </html>
+  
