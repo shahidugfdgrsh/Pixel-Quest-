@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Diamonds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .form-container {
+            margin-top: 20px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 1em;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Get Free Fire Diamonds</h1>
+
+<div class="form-container">
+    <input type="text" id="player-id" placeholder="Enter your Player ID" />
+    <br />
+    <input type="number" id="diamond-amount" placeholder="Enter amount of diamonds" />
+    <br />
+    <button onclick="generateDiamonds()">Generate Diamonds</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+    function generateDiamonds() {
+        const playerId = document.getElementById('player-id').value;
+        const diamondAmount = document.getElementById('diamond-amount').value;
+
+        if (!playerId || !diamondAmount) {
+            document.getElementById('result').innerText = "Please enter both your Player ID and the amount of diamonds.";
+            return;
+        }
+
+        document.getElementById('result').innerText = `Generating ${diamondAmount} diamonds for Player ID: ${playerId}. Please wait...`;
+        
+        setTimeout(() => {
+            document.getElementById('result').innerText = `Diamonds Sent✅ Thank you for using our website`;
+        }, 3000); // Simulate loading
+    }
+</script>
+
+</body>
+</html>
